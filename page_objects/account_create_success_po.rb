@@ -5,8 +5,8 @@ module PageObjects
 		include Capybara::DSL
 
 		def initialize
-			@page_heading = 'body > h1'
-			@continue_shopping_link = 'body > a'
+			@page_heading = 'body > div > h1'
+			@continue_shopping_link = 'body > div > a'
 		end
 
 		def get_page_heading_text

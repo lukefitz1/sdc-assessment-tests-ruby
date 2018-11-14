@@ -19,3 +19,10 @@ Feature: SDC Assessment
     When He attempts to create a new account with differing password and confirm passwords
     And Submits the account signup form
     Then The Passwords do not match error is displayed
+
+  Scenario: Customer cannot complete account sign up form without selecting terms & conditions
+    Given Luke is on the cart page with a product in his cart
+    And He has completed checkout
+    When He attempts to create a new account without agreeing to the terms and conditions
+    And Submits the account signup form
+    Then The Terms and Conditions error message is displayed

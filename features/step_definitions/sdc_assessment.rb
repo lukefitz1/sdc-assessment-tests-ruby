@@ -52,3 +52,15 @@ Then("The Passwords do not match error is displayed") do
 
   expect(@signup.get_passwords_mismatch_error).to eq('Passwords do not match!')
 end
+
+When("He attempts to create a new account without agreeing to the terms and conditions") do
+  @signup = PageObjects::AccountSignUpPage.new
+  @signup.wait_for_signup_form
+  @signup.complete_signup_form_no_terms
+end
+
+Then("The Terms and Conditions error message is displayed") do
+  @signup.wait_for_terms_and_conditions_error
+
+  expect(@signup.get_terms_and_conditions_error).to eq('Terms and Conditions must be accepted')
+end

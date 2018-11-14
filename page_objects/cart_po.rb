@@ -7,7 +7,7 @@ module PageObjects
 		def initialize
 			@email_input = '#order_email'
 			@email_error_message = '#empty-email'
-			@place_order_btn = 'body > form > div.actions > input[type="submit"]'
+			@place_order_btn = 'body > div > form > div.actions > input[type="submit"]'
 		end
 
 		def click_place_order_btn
