@@ -64,3 +64,15 @@ Then("The Terms and Conditions error message is displayed") do
 
   expect(@signup.get_terms_and_conditions_error).to eq('Terms and Conditions must be accepted')
 end
+
+When("He attempts to create a new account but is under 18 years old") do
+  @signup = PageObjects::AccountSignUpPage.new
+  @signup.wait_for_signup_form
+  @signup.complete_signup_form_underage
+end
+
+Then("The You Must Be 18 years or older to sign up for an account error message is displayed") do
+  @signup.wait_for_underage_error
+
+  expect(@signup.get_underage_error).to eq('You must be 18 years or older to sign up')
+end

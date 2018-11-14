@@ -16,6 +16,7 @@ module PageObjects
 			@create_account_btn = 'body > div > div > form > div.actions > input[type="submit"]'
 			@passwords_mismatch_error = '#passwords-dont-match'
 			@terms_and_conditions_error = '#terms-not-selected'
+			@underage_error = '#too-young'
 		end
 
 		def wait_for_signup_form
@@ -28,6 +29,10 @@ module PageObjects
 
 		def wait_for_terms_and_conditions_error
 			wait_for(@terms_and_conditions_error)
+		end
+
+		def wait_for_underage_error
+			wait_for(@underage_error)
 		end
 
 		def complete_signup_form
@@ -52,11 +57,21 @@ module PageObjects
 
 		def complete_signup_form_no_terms
 			set(@password_input, 'Password1')
-			set(@confirm_password_input, 'Password2')
+			set(@confirm_password_input, 'Password1')
 			click(@this_order_is_for_me_radio)
 			set(@dob_month_input, '03')
 			set(@dob_day_input, '12')
 			set(@dob_year_input, '1988')
+		end
+
+		def complete_signup_form_underage
+			set(@password_input, 'Password1')
+			set(@confirm_password_input, 'Password1')
+			click(@this_order_is_for_me_radio)
+			set(@dob_month_input, '03')
+			set(@dob_day_input, '12')
+			set(@dob_year_input, '2005')
+			click(@tc_checkbox)
 		end
 
 		def click_create_account_btn
@@ -69,6 +84,10 @@ module PageObjects
 
 		def get_terms_and_conditions_error
 			text(@terms_and_conditions_error) 
+		end
+
+		def get_underage_error
+			text(@underage_error)
 		end
 	end
 end
